@@ -1,39 +1,49 @@
-import OTPModel from "../model/OTP";
+// import OTPModel from "../model/OTP";
 import UserModel from "../model/User";
-import { generateOTP, sendOTP } from "../lib/otp";
+// import { generateOTP, sendOTP } from "../lib/otp";
 import { generateToken } from "../lib/jwt";
 import { Request, Response } from "express";
 import { comparePassword, hashPassword } from "../lib/bcrypt";
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { name, email, password, phone, role, job } = req.body;
-    if (!name || !email || !password || !phone || !role || !job)
-      res
+    const { username, email, password } = req.body;
+    if (!username || !email || !password)
+      return res
         .status(400)
         .json({ success: false, message: "All fields are required" });
 
+    const existingUser = await UserModel.findOne({ email });
+    if (existingUser)
+      return res
+        .status(400)
+        .json({ success: false, message: "User already exists" });
+
     const hashedPassword = hashPassword(password);
     const user = new UserModel({
-      name,
+      username,
       email,
       password: hashedPassword,
-      phone,
-      role,
-      job,
+    });
+    const token = generateToken({
+      id: user._id,
+      email: user.email,
+      username: user.username,
     });
     await user.save();
 
-    res.status(201).json({ success: true, message: "User Created" });
+    return res
+      .status(201)
+      .json({ success: true, message: "User Created", data: token });
   } catch (e: any) {
     console.log(e);
-    res.status(500).json({ success: false, message: e.message });
+    return res.status(500).json({ success: false, message: e.message });
   }
 };
 
 export const loginUser = async (req: Request, res: Response) => {
   try {
-    const { email } = req.body;
+    const { email, password } = req.body;
     if (!email)
       return res
         .status(400)
@@ -45,7 +55,7 @@ export const loginUser = async (req: Request, res: Response) => {
         .status(404)
         .json({ success: false, message: "User not found" });
 
-    const isMatch = comparePassword(req.body.password, user.password);
+    const isMatch = comparePassword(password, user.password);
     if (!isMatch)
       return res
         .status(400)
@@ -54,18 +64,16 @@ export const loginUser = async (req: Request, res: Response) => {
     const token = generateToken({
       id: user._id,
       email: user.email,
-      name: user.name,
-      role: user.role,
-      job: user.job,
+      username: user.username,
     });
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "User Authenticated",
       data: token,
     });
   } catch (e: any) {
     console.log(e);
-    res.status(500).json({ success: false, message: e.message });
+    return res.status(500).json({ success: false, message: e.message });
   }
 };
 
