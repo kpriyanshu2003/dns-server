@@ -1,4 +1,5 @@
 const dgram = require("node:dgram");
+const dnsPacket = require("dns-packet");
 const server = dgram.createSocket("udp4");
 
 server.on("error", (err) => {
@@ -6,8 +7,38 @@ server.on("error", (err) => {
   server.close();
 });
 
+const db = {
+  "piyushgarg.dev": {
+    type: "A",
+    data: "1.1.1.1",
+  },
+  "priyanshu.dev": {
+    type: "CNAME",
+    data: "hashnode.network",
+  },
+};
+
 server.on("message", (msg, rinfo) => {
-  console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+  const packet = dnsPacket.decode(msg);
+  const ipFromDB = db[packet.questions[0].name];
+
+  const ans = dnsPacket.encode({
+    id: packet.id,
+    type: "response",
+    flags: dnsPacket.AUTHORITATIVE_ANSWER,
+    questions: packet.questions,
+    answers: [
+      {
+        class: "IN",
+        name: packet.questions[0].name,
+        ttl: 300,
+        type: ipFromDB.type,
+        data: ipFromDB.data,
+      },
+    ],
+  });
+
+  server.send(ans, rinfo.port, rinfo.address);
 });
 
 server.on("listening", () => {
