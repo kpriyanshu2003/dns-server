@@ -3,6 +3,7 @@ import { DNSRecordEnum, IDNSRecord } from "../@types/DNS";
 
 const dnsRecordSchema = new mongoose.Schema<IDNSRecord>(
   {
+    domainId: { type: mongoose.Schema.Types.ObjectId, ref: "Domain" },
     type: {
       type: String,
       required: true,
@@ -20,7 +21,4 @@ const dnsRecordSchema = new mongoose.Schema<IDNSRecord>(
   { timestamps: true }
 );
 
-export const DNSRecord = mongoose.model<IDNSRecord>(
-  "DNSRecord",
-  dnsRecordSchema
-);
+export default mongoose.model<IDNSRecord>("DNSRecord", dnsRecordSchema);
