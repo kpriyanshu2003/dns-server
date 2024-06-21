@@ -1,29 +1,20 @@
 import mongoose from "mongoose";
-
-interface IDNSRecord extends mongoose.Document {
-  type: "A" | "CNAME" | "MX" | "TXT" | "SRV" | "AAAA" | "NS";
-  value: string;
-  ttl?: number;
-  priority?: number;
-}
+import { DNSRecordEnum, IDNSRecord } from "../@types/DNS";
 
 const dnsRecordSchema = new mongoose.Schema<IDNSRecord>(
   {
     type: {
       type: String,
       required: true,
-      enum: ["A", "CNAME", "MX", "TXT", "SRV", "AAAA", "NS"],
+      enum: DNSRecordEnum,
     },
     value: { type: String, required: true },
-    ttl: {
-      type: Number,
-      default: 3600, // Default TTL value in seconds
-    },
+    ttl: { type: Number, default: 3600 },
     priority: {
       type: Number,
       required: function (this: IDNSRecord) {
-        return this.type === "MX";
-      }, // Priority is required for MX records
+        return this.type === DNSRecordEnum.MX;
+      },
     },
   },
   { timestamps: true }
