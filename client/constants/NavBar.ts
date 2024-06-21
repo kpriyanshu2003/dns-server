@@ -3,3 +3,8 @@ export const NavItems = [
   { name: "Domains", href: "/domains" },
   { name: "Integrations", href: "/intergrations" },
 ];
+
+export const NavSettings = [
+  { name: "Settings", href: "/settings" },
+  { name: "Logout", href: "/auth/logout" },
+];

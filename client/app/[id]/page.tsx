@@ -3,6 +3,7 @@ import Main from "@/pages/Main";
 import Domains from "@/pages/Domains";
 import Register from "@/pages/Register";
 import NavBar from "@/components/NavBar";
+import Settings from "@/pages/Settings";
 
 function Page({ params }: { params: { id: string } }) {
   const pageComponents: { [key: string]: JSX.Element | string } = {
@@ -10,6 +11,7 @@ function Page({ params }: { params: { id: string } }) {
     register: <Register />,
     domains: <Domains />,
     integrations: "Integrations",
+    settings: <Settings />,
   };
 
   const renderPage = () =>
