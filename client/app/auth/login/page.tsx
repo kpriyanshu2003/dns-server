@@ -28,7 +28,7 @@ function Page() {
     login(formData.email, formData.password)
       .then((res) => {
         toast.success("Login successful");
-        document.cookie = `token=${res.data.data}`;
+        document.cookie = `token=${res.data.data}; path=/`;
       })
       .then(() => {
         setTimeout(() => toast.info("Redirecting to Dashboard"), 1000);
