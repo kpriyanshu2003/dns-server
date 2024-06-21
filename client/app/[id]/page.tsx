@@ -1,12 +1,14 @@
-import NavBar from "@/components/NavBar";
-import Main from "@/pages/Main";
 import React from "react";
+import Main from "@/pages/Main";
+import Domains from "@/pages/Domains";
+import Register from "@/pages/Register";
+import NavBar from "@/components/NavBar";
 
 function Page({ params }: { params: { id: string } }) {
   const pageComponents: { [key: string]: JSX.Element | string } = {
     dashboard: <Main />,
-    register: "Register",
-    domains: "Domains",
+    register: <Register />,
+    domains: <Domains />,
     integrations: "Integrations",
   };
 
