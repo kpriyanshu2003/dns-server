@@ -1,5 +1,4 @@
 import express, { Request, Response } from "express";
-import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import morgan from "morgan";
@@ -12,15 +11,13 @@ dotenv.config();
 
 const app = express();
 const port = 3300;
-const mongo_uri =
-  process.env.MONGO_URI || "mongodb://localhost:27017/dns-server";
 
 app.use(cors());
+app.use(helmet());
+app.use(compress());
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(compress());
-app.use(helmet());
-app.use(morgan("dev"));
 
 app.use("/api", router);
 
@@ -29,12 +26,7 @@ app.use((req: Request, res: Response) =>
 );
 
 export const startExpressServer = () => {
-  mongoose
-    .connect(mongo_uri)
-    .then(() =>
-      app.listen(port, () =>
-        console.log("Server running on http://localhost:" + port)
-      )
-    )
-    .catch((err: any) => console.log(err));
+  app.listen(port, () =>
+    console.log("Express.js Server running on localhost:" + port)
+  );
 };
