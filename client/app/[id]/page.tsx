@@ -4,13 +4,14 @@ import Domains from "@/pages/Domains";
 import Register from "@/pages/Register";
 import NavBar from "@/components/NavBar";
 import Settings from "@/pages/Settings";
+import Resolve from "@/pages/Resolve";
 
 function Page({ params }: { params: { id: string } }) {
   const pageComponents: { [key: string]: JSX.Element | string } = {
     dashboard: <Main />,
     register: <Register />,
     domains: <Domains />,
-    integrations: "Integrations",
+    resolve: <Resolve />,
     settings: <Settings />,
   };
 
@@ -21,7 +22,7 @@ function Page({ params }: { params: { id: string } }) {
   return (
     <div className="flex">
       {showNavBar && <NavBar />}
-      <div className={showNavBar ? "ml-72 w-full pl-10" : "w-full"}>
+      <div className={showNavBar ? "ml-72 w-full pl-10 pt-10" : "w-full"}>
         {renderPage()}
       </div>
     </div>
