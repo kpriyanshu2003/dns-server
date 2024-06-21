@@ -2,9 +2,13 @@ import { JWTPayload, jwtVerify } from "jose";
 
 const secretKey = process.env.JWT_SECRET || "";
 
+interface UserJWTPayload extends JWTPayload {
+  username: string;
+}
+
 export async function verifyToken(token: string) {
   let result: {
-    verified: JWTPayload | null;
+    verified: UserJWTPayload | null;
     error: null | Error;
   } = {
     verified: null,
@@ -15,7 +19,7 @@ export async function verifyToken(token: string) {
       token,
       new TextEncoder().encode(secretKey)
     );
-    result.verified = verified.payload as JWTPayload;
+    result.verified = verified.payload as UserJWTPayload;
   } catch (err: any) {
     console.error(err);
     result.error = err.message;
