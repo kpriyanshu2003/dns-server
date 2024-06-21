@@ -35,7 +35,7 @@ function Page() {
       })
       .then(() => {
         setTimeout(() => toast.info("Redirecting to Dashboard"), 1000);
-        setTimeout(() => router.push("/"), 2000);
+        setTimeout(() => router.push("/dashboard"), 2000);
       })
       .catch((err) => {
         console.log(err);

@@ -1,23 +1,31 @@
-import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
+import { verifyToken } from "./lib/jose";
+
+function redirectToLogin(request: NextRequest) {
+  return NextResponse.redirect(new URL("/auth/login", request.url));
+}
+
+function isTokenExpired(exp: number | undefined) {
+  return exp && exp < Date.now() / 1000;
+}
 
 export async function middleware(request: NextRequest) {
-  const session = request.cookies.get("token");
-  if (!session || !session.value || !process.env.secretKey)
-    return NextResponse.redirect(new URL("/auth/login", request.url));
+  const token = request.cookies.get("token")?.value;
+  if (!token) return redirectToLogin(request);
 
-  const decodedToken = jwt.verify(session.value, process.env.secretKey);
-  if (
-    decodedToken &&
-    typeof decodedToken === "object" &&
-    "exp" in decodedToken
-  ) {
-    const currentTime = Math.floor(Date.now() / 1000);
-    if (decodedToken.exp && decodedToken.exp > currentTime)
-      return NextResponse.next();
+  const jwtSecret = process.env.JWT_SECRET;
+  if (!jwtSecret) return redirectToLogin(request);
+
+  try {
+    const { verified, error } = await verifyToken(token);
+    if (error) return redirectToLogin(request);
+    if (!verified) return redirectToLogin(request);
+    if (isTokenExpired(verified.exp)) return redirectToLogin(request);
+    return NextResponse.next();
+  } catch (err) {
+    console.error("An unexpected error occurred:", err);
+    return redirectToLogin(request);
   }
-
-  return NextResponse.redirect(new URL("/auth/login", request.url));
 }
 
 export const config = {
