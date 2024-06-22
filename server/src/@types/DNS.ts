@@ -12,7 +12,7 @@ export interface DNSDatabase {
 export interface IDNSRecord extends mongoose.Document {
   domainId: mongoose.Schema.Types.ObjectId;
   type: DNSRecordEnum;
-  value: string;
+  data: string;
   ttl?: number;
   priority?: number;
 }

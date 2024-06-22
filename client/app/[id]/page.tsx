@@ -20,9 +20,9 @@ function Page({ params }: { params: { id: string } }) {
   const showNavBar = !!pageComponents[params.id];
 
   return (
-    <div className="flex">
+    <div className="flex bg-gray-50 min-h-screen">
       {showNavBar && <NavBar />}
-      <div className={showNavBar ? "ml-72 w-full pl-10 pt-10" : "w-full"}>
+      <div className={showNavBar ? "ml-72 w-full pl-20 pr-32 pt-20" : "w-full"}>
         {renderPage()}
       </div>
     </div>

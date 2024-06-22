@@ -36,7 +36,7 @@ function Page() {
       })
       .catch((err) => {
         console.log(err);
-        toast.error(err.response.data.message);
+        toast.error(err.message);
       })
       .finally(() => setLoading(false));
   };
