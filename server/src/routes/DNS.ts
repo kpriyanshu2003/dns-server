@@ -24,10 +24,10 @@ router.get("/dns/:id", getDNSRecordbyId);
 router.post("/d", registerDomain);
 router.post("/dns", registerDNSRecords);
 
-router.put("/d", updateDomain);
-router.put("/dns", updateDNSRecord);
+router.put("/d/:id", updateDomain);
+router.put("/dns/:id", updateDNSRecord);
 
-router.delete("/d", deleteDomain);
-router.delete("/dns", deleteDNSRecord);
+router.delete("/d/:id", deleteDomain);
+router.delete("/dns/:id", deleteDNSRecord);
 
 export default router;

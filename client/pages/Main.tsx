@@ -24,8 +24,8 @@ function Main() {
         <div>
           If you are new to this place, you can start by adding your own domain,
           in the{" "}
-          <Link href="/register" className="text-blue-600 font-medium">
-            Register
+          <Link href="/domains" className="text-blue-600 font-medium">
+            Domains
           </Link>{" "}
           Section.
         </div>

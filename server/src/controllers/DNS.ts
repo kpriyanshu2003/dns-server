@@ -95,6 +95,7 @@ export const getDNSRecordbyId = async (req: Request, res: Response) => {
   }
 };
 
+// Create Domain + www for root
 export const registerDomain = async (req: CustomRequest, res: Response) => {
   try {
     const { name } = req.body;
@@ -149,7 +150,7 @@ export const updateDomain = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const data = req.body;
-    if (!id)
+    if (!id || !mongoose.Types.ObjectId.isValid(id))
       return res
         .status(400)
         .send({ success: false, message: "Id parameter is required" });
@@ -173,7 +174,7 @@ export const updateDNSRecord = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const data = req.body;
-    if (!id)
+    if (!id || !mongoose.Types.ObjectId.isValid(id))
       return res
         .status(400)
         .send({ success: false, message: "Id parameter is required" });
@@ -193,10 +194,11 @@ export const updateDNSRecord = async (req: Request, res: Response) => {
   }
 };
 
+// Delete SubDomains + DNS Records + www SubDomain
 export const deleteDomain = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    if (!id)
+    if (!id || !mongoose.Types.ObjectId.isValid(id))
       return res
         .status(400)
         .send({ success: false, message: "Id parameter is required" });
@@ -220,7 +222,7 @@ export const deleteDomain = async (req: Request, res: Response) => {
 export const deleteDNSRecord = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    if (!id)
+    if (!id || !mongoose.Types.ObjectId.isValid(id))
       return res
         .status(400)
         .send({ success: false, message: "Id parameter is required" });

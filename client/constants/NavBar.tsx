@@ -6,14 +6,14 @@ import { MdOutlinePlaylistAdd } from "react-icons/md";
 
 export const NavItems = [
   {
-    logo: <MdOutlinePlaylistAdd className="h-8 w-8" />,
-    name: "Register",
-    href: "/register",
-  },
-  {
     logo: <FaThList className="h-4 w-4" />,
     name: "Domains",
     href: "/domains",
+  },
+  {
+    logo: <MdOutlinePlaylistAdd className="h-8 w-8" />,
+    name: "Register",
+    href: "/register",
   },
   {
     logo: <RiCompasses2Fill className="h-6 w-6 border" />,

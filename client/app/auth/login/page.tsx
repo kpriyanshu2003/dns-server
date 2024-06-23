@@ -5,10 +5,10 @@ import { MdOutlineEmail, MdLockOutline } from "react-icons/md";
 import { Button } from "@nextui-org/button";
 import { CgSpinner } from "react-icons/cg";
 import { toast } from "sonner";
-import { login } from "@/api/auth";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { login } from "@/actions/auth";
 
 function Page() {
   const router = useRouter();
@@ -28,7 +28,9 @@ function Page() {
     login(formData.email, formData.password)
       .then((res) => {
         toast.success("Login successful");
-        document.cookie = `token=${res.data.data}; path=/`;
+        document.cookie = `token=${res.data.data}; path=/; expires=${new Date(
+          Date.now() + 1000 * 60 * 60 * 24 * 7
+        )}`;
       })
       .then(() => {
         setTimeout(() => toast.info("Redirecting to Dashboard"), 1000);
