@@ -1,7 +1,7 @@
 import React from "react";
 import Main from "@/pages/Main";
 import Domains from "@/pages/Domains";
-import Register from "@/pages/Register";
+import DNS from "@/pages/DNS";
 import NavBar from "@/components/NavBar";
 import Settings from "@/pages/Settings";
 import Resolve from "@/pages/Resolve";
@@ -9,7 +9,7 @@ import Resolve from "@/pages/Resolve";
 function Page({ params }: { params: { id: string } }) {
   const pageComponents: { [key: string]: JSX.Element | string } = {
     dashboard: <Main />,
-    register: <Register />,
+    dns: <DNS />,
     domains: <Domains />,
     resolve: <Resolve />,
     settings: <Settings />,

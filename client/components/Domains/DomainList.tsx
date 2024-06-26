@@ -12,7 +12,7 @@ import { DomainModalDeleteDomain } from "./DomainModal";
 
 const DomainsList = async () => {
   try {
-    const domains = await (await getDomains()).domains;
+    const domains = (await getDomains()).domains;
     return (
       <ul className="bg-white mt-12 border rounded-lg overflow-hidden">
         {domains.map((domain: AllDomainsBackendResponse) => (

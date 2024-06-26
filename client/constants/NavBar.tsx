@@ -12,8 +12,8 @@ export const NavItems = [
   },
   {
     logo: <MdOutlinePlaylistAdd className="h-8 w-8" />,
-    name: "Register",
-    href: "/register",
+    name: "DNS",
+    href: "/dns",
   },
   {
     logo: <RiCompasses2Fill className="h-6 w-6 border" />,

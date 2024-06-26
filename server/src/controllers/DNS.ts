@@ -124,16 +124,13 @@ export const registerDNSRecords = async (req: Request, res: Response) => {
         .status(400)
         .send({ success: false, message: "domainId, type, data is required" });
 
-    const domain = await DomainModel.findById(data.domainId);
+    const domain = await DomainModel.findOne({ name: data.domainId });
     if (!domain)
       return res
         .status(404)
         .send({ success: false, message: "Domain not found" });
 
-    const record = new DNSRecordModel({
-      ...data,
-      domainId: new mongoose.Types.ObjectId(domain._id),
-    });
+    const record = new DNSRecordModel({ ...data, domainId: domain._id });
     domain.dnsRecords.push(new mongoose.Types.ObjectId(record._id as string));
 
     await record.save();
