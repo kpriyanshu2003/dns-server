@@ -1,30 +1,57 @@
 "use client";
 
-import { v4 as uuid } from "uuid";
 import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Button } from "@nextui-org/button";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { DNSRecordTypeData, TTLData } from "@/constants/DNS";
+import { useSearchParams } from "next/navigation";
+import { createDNSRecord } from "@/actions/dns";
+import { toast } from "sonner";
 
 function DNSRecords() {
-  const [formData, setFormData] = React.useState({
+  const searchParams = useSearchParams();
+  const search = searchParams?.get("domain");
+  const [formData, setFormData] = useState({
     type: "",
     name: "",
-    value: "",
+    data: "",
     ttl: "",
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    if (
+      !formData.type ||
+      !formData.name ||
+      !formData.data ||
+      !formData.ttl ||
+      !search
+    )
+      return toast.error("Please fill all the fields");
+
+    createDNSRecord(search, formData)
+      .then(() => {
+        toast.success("DNS Record created successfully");
+        setFormData({
+          type: "",
+          name: "",
+          data: "",
+          ttl: "",
+        });
+      })
+      .catch((e) => {
+        toast.error(e.message);
+        console.error(e);
+      });
   };
+
   const handleReset = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormData({
       type: "",
       name: "",
-      value: "",
+      data: "",
       ttl: "",
     });
   };
@@ -77,9 +104,9 @@ function DNSRecords() {
               isRequired
               placeholder="xx.xx.xx.xx"
               labelPlacement="outside"
-              value={formData.value}
+              value={formData.data}
               onChange={(e) =>
-                setFormData({ ...formData, value: e.target.value })
+                setFormData({ ...formData, data: e.target.value })
               }
             />
             <Select

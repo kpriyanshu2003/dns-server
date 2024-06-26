@@ -900,7 +900,7 @@
     "@react-aria/utils" "3.24.1"
     "@react-stately/utils" "3.10.1"
 
-"@nextui-org/table@2.0.36":
+"@nextui-org/table@2.0.36", "@nextui-org/table@^2.0.36":
   version "2.0.36"
   resolved "https://registry.yarnpkg.com/@nextui-org/table/-/table-2.0.36.tgz#607dc9d55637e0160abf48ffe72aa52cb7142db7"
   integrity sha512-vpohZo5p3XmT6FLOKKwmm8SdCA/h2QPQz6Y66sAfHuoqAfkmfVfAeyKgYTe20pVJy3Whvyix6IA8e0eWETDTEw==
@@ -1674,6 +1674,14 @@
     "@react-types/shared" "^3.23.1"
     "@swc/helpers" "^0.5.0"
 
+"@react-stately/data@^3.11.4":
+  version "3.11.4"
+  resolved "https://registry.yarnpkg.com/@react-stately/data/-/data-3.11.4.tgz#a6168c292830af0e8d1dff154724d7ea253c7407"
+  integrity sha512-PbnUQxeE6AznSuEWYnRmrYQ9t5z1Asx98Jtrl96EeA6Iapt9kOjTN9ySqCxtPxMKleb1NIqG3+uHU3veIqmLsg==
+  dependencies:
+    "@react-types/shared" "^3.23.1"
+    "@swc/helpers" "^0.5.0"
+
 "@react-stately/datepicker@3.9.4", "@react-stately/datepicker@^3.9.4":
   version "3.9.4"
   resolved "https://registry.yarnpkg.com/@react-stately/datepicker/-/datepicker-3.9.4.tgz#c9862cdc09da72760ed3005169223c7743b44b2d"
@@ -1685,6 +1693,15 @@
     "@react-stately/overlays" "^3.6.7"
     "@react-stately/utils" "^3.10.1"
     "@react-types/datepicker" "^3.7.4"
+    "@react-types/shared" "^3.23.1"
+    "@swc/helpers" "^0.5.0"
+
+"@react-stately/dnd@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@react-stately/dnd/-/dnd-3.3.1.tgz#e4f9d5c58dd2ed4869c8d458c8fdc23e269bf5d3"
+  integrity sha512-I/Ci5xB8hSgAXzoWYWScfMM9UK1MX/eTlARBhiSlfudewweOtNJAI+cXJgU7uiUnGjh4B4v3qDBtlAH1dWDCsw==
+  dependencies:
+    "@react-stately/selection" "^3.15.1"
     "@react-types/shared" "^3.23.1"
     "@swc/helpers" "^0.5.0"
 
@@ -1735,6 +1752,17 @@
     "@react-types/shared" "^3.23.1"
     "@swc/helpers" "^0.5.0"
 
+"@react-stately/numberfield@^3.9.3":
+  version "3.9.3"
+  resolved "https://registry.yarnpkg.com/@react-stately/numberfield/-/numberfield-3.9.3.tgz#b61429835b949aa6ad5e2fb6e6699ee78ce7bcd5"
+  integrity sha512-UlPTLSabhLEuHtgzM0PgfhtEaHy3yttbzcRb8yHNvGo4KbCHeHpTHd3QghKfTFm024Mug7+mVlWCmMtW0f5ttg==
+  dependencies:
+    "@internationalized/number" "^3.5.3"
+    "@react-stately/form" "^3.0.3"
+    "@react-stately/utils" "^3.10.1"
+    "@react-types/numberfield" "^3.8.3"
+    "@swc/helpers" "^0.5.0"
+
 "@react-stately/overlays@3.6.7", "@react-stately/overlays@^3.6.7":
   version "3.6.7"
   resolved "https://registry.yarnpkg.com/@react-stately/overlays/-/overlays-3.6.7.tgz#d4aa1b709e6e72306c33308bb031466730dd0480"
@@ -1753,6 +1781,15 @@
     "@react-stately/utils" "^3.10.1"
     "@react-types/radio" "^3.8.1"
     "@react-types/shared" "^3.23.1"
+    "@swc/helpers" "^0.5.0"
+
+"@react-stately/searchfield@^3.5.3":
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/@react-stately/searchfield/-/searchfield-3.5.3.tgz#423056e1260dd0332c1d2454a91c67e338964c40"
+  integrity sha512-H0OvlgwPIFdc471ypw79MDjz3WXaVq9+THaY6JM4DIohEJNN5Dwei7O9g6r6m/GqPXJIn5TT3b74kJ2Osc00YQ==
+  dependencies:
+    "@react-stately/utils" "^3.10.1"
+    "@react-types/searchfield" "^3.5.5"
     "@swc/helpers" "^0.5.0"
 
 "@react-stately/select@^3.6.4":
@@ -1948,6 +1985,13 @@
     "@react-types/overlays" "^3.8.7"
     "@react-types/shared" "^3.23.1"
 
+"@react-types/numberfield@^3.8.3":
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/@react-types/numberfield/-/numberfield-3.8.3.tgz#85f8c4eceea22b437232250596fbaebfc7318e04"
+  integrity sha512-z5fGfVj3oh5bmkw9zDvClA1nDBSFL9affOuyk2qZ/M2SRUmykDAPCksbfcMndft0XULWKbF4s2CYbVI+E/yrUA==
+  dependencies:
+    "@react-types/shared" "^3.23.1"
+
 "@react-types/overlays@3.8.7", "@react-types/overlays@^3.8.7":
   version "3.8.7"
   resolved "https://registry.yarnpkg.com/@react-types/overlays/-/overlays-3.8.7.tgz#a43faf524cb3fce74acceee43898b265e8dfee05"
@@ -1968,6 +2012,14 @@
   integrity sha512-bK0gio/qj1+0Ldu/3k/s9BaOZvnnRgvFtL3u5ky479+aLG5qf1CmYed3SKz8ErZ70JkpuCSrSwSCFf0t1IHovw==
   dependencies:
     "@react-types/shared" "^3.23.1"
+
+"@react-types/searchfield@^3.5.5":
+  version "3.5.5"
+  resolved "https://registry.yarnpkg.com/@react-types/searchfield/-/searchfield-3.5.5.tgz#61b1c684039b1ff40d1a8da6c5172b4c8b90d530"
+  integrity sha512-T/NHg12+w23TxlXMdetogLDUldk1z5dDavzbnjKrLkajLb221bp8brlR/+O6C1CtFpuJGALqYHgTasU1qkQFSA==
+  dependencies:
+    "@react-types/shared" "^3.23.1"
+    "@react-types/textfield" "^3.9.3"
 
 "@react-types/select@3.9.4", "@react-types/select@^3.9.4":
   version "3.9.4"
@@ -4184,6 +4236,35 @@ react-remove-scroll@^2.5.6:
     tslib "^2.1.0"
     use-callback-ref "^1.3.0"
     use-sidecar "^1.1.2"
+
+react-stately@^3.31.1:
+  version "3.31.1"
+  resolved "https://registry.yarnpkg.com/react-stately/-/react-stately-3.31.1.tgz#8cc160adfe6e15034be0a68cd5ab8281b53dcfb9"
+  integrity sha512-wuq673NHkYSdoceGryjtMJJvB9iQgyDkQDsnTN0t2v91pXjGDsN/EcOvnUrxXSBtY9eLdIw74R54z9GX5cJNEg==
+  dependencies:
+    "@react-stately/calendar" "^3.5.1"
+    "@react-stately/checkbox" "^3.6.5"
+    "@react-stately/collections" "^3.10.7"
+    "@react-stately/combobox" "^3.8.4"
+    "@react-stately/data" "^3.11.4"
+    "@react-stately/datepicker" "^3.9.4"
+    "@react-stately/dnd" "^3.3.1"
+    "@react-stately/form" "^3.0.3"
+    "@react-stately/list" "^3.10.5"
+    "@react-stately/menu" "^3.7.1"
+    "@react-stately/numberfield" "^3.9.3"
+    "@react-stately/overlays" "^3.6.7"
+    "@react-stately/radio" "^3.10.4"
+    "@react-stately/searchfield" "^3.5.3"
+    "@react-stately/select" "^3.6.4"
+    "@react-stately/selection" "^3.15.1"
+    "@react-stately/slider" "^3.5.4"
+    "@react-stately/table" "^3.11.8"
+    "@react-stately/tabs" "^3.6.6"
+    "@react-stately/toggle" "^3.7.4"
+    "@react-stately/tooltip" "^3.4.9"
+    "@react-stately/tree" "^3.8.1"
+    "@react-types/shared" "^3.23.1"
 
 react-style-singleton@^2.2.1:
   version "2.2.1"

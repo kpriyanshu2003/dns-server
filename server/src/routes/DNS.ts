@@ -4,6 +4,7 @@ import {
   deleteDNSRecord,
   deleteDomain,
   getDNSRecordbyId,
+  getDNSRecordbyName,
   getDNSRecords,
   getDomainbyId,
   getDomains,
@@ -20,6 +21,7 @@ router.get("/d", getDomains);
 router.get("/d/:id", getDomainbyId);
 router.get("/dns", getDNSRecords);
 router.get("/dns/:id", getDNSRecordbyId);
+router.get("/dns/n/:id", getDNSRecordbyName);
 
 router.post("/d", registerDomain);
 router.post("/dns", registerDNSRecords);

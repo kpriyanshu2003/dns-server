@@ -24,6 +24,24 @@ export const getDomains = async () => {
   }
 };
 
+export const getDomainById = async (id: string) => {
+  try {
+    const token = cookies().get("token")?.value;
+    const response = await fetch(api + `/dns/d/${id}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (!response.ok)
+      throw new Error(`Error: ${response.status} ${response.statusText}`);
+
+    return await response.json();
+  } catch (e: any) {
+    console.error(e);
+    throw new Error(e.message);
+  }
+};
+
 export const createDomain = async (name: string) => {
   try {
     if (!name) throw new Error("Name is required");

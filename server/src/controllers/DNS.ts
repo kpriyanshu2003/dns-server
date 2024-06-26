@@ -95,6 +95,36 @@ export const getDNSRecordbyId = async (req: Request, res: Response) => {
   }
 };
 
+// Here name is Domain Name
+export const getDNSRecordbyName = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    if (!id)
+      return res
+        .status(400)
+        .send({ success: false, message: "Id parameter is required" });
+
+    const record = await DNSRecordModel.aggregate([
+      {
+        $lookup: {
+          from: "domains",
+          localField: "domainId",
+          foreignField: "_id",
+          as: "domain",
+        },
+      },
+      { $unwind: "$domain" },
+      { $match: { "domain.name": id } },
+    ]);
+
+    if (!record) return res.status(404).send({ message: "Record not found" });
+
+    res.send({ success: true, record });
+  } catch (e: any) {
+    console.error(e);
+    res.status(500).send({ success: false, message: e.message });
+  }
+};
 // Create Domain + www for root
 export const registerDomain = async (req: CustomRequest, res: Response) => {
   try {
@@ -119,6 +149,8 @@ export const registerDomain = async (req: CustomRequest, res: Response) => {
 export const registerDNSRecords = async (req: Request, res: Response) => {
   try {
     const data = req.body;
+    console.log(data);
+
     if (!data.domainId || !data.type || !data.data)
       return res
         .status(400)

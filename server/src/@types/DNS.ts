@@ -11,6 +11,7 @@ export interface DNSDatabase {
 
 export interface IDNSRecord extends mongoose.Document {
   domainId: mongoose.Schema.Types.ObjectId;
+  name: string;
   type: DNSRecordEnum;
   data: string;
   ttl?: number;

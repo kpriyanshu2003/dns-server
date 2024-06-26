@@ -9,6 +9,7 @@ const dnsRecordSchema = new mongoose.Schema<IDNSRecord>(
       required: true,
       enum: DNSRecordEnum,
     },
+    name: { type: String, required: true },
     data: { type: String, required: true },
     ttl: { type: Number, default: 3600 },
     priority: {
