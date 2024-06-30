@@ -149,7 +149,6 @@ export const registerDomain = async (req: CustomRequest, res: Response) => {
 export const registerDNSRecords = async (req: Request, res: Response) => {
   try {
     const data = req.body;
-    console.log(data);
 
     if (!data.domainId || !data.type || !data.data)
       return res
