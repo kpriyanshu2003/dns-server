@@ -1,0 +1,16 @@
+* {
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+span {
+  font-weight: 600;
+}
