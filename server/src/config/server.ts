@@ -26,8 +26,7 @@ server.on("message", (msg: Buffer, rinfo: dgram.RemoteInfo) => {
     const response = dnsPacket.encode({
       id: packet.id,
       type: "response",
-      flags:
-        dnsPacket.AUTHORITATIVE_ANSWER | dnsPacket.RESPONSE_CODES.NAME_ERROR,
+      flags: dnsPacket.AUTHORITATIVE_ANSWER,
       questions: packet.questions,
       answers: [],
     });
