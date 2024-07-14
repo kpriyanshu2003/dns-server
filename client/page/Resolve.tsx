@@ -1,7 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { resolveDNS } from "@/actions/resolve";
@@ -9,7 +9,7 @@ import { resolveDNS } from "@/actions/resolve";
 function Resolve() {
   const [input, setInput] = useState<string>("");
   const [records, setRecords] = useState([]);
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!input) return toast.error("Please enter a valid IP Address");
     resolveDNS(input)

@@ -28,7 +28,7 @@ function Page() {
     login(formData.email, formData.password)
       .then((res) => {
         toast.success("Login successful");
-        document.cookie = `token=${res.data.data}; path=/; expires=${new Date(
+        document.cookie = `token=${res.data}; path=/; expires=${new Date(
           Date.now() + 1000 * 60 * 60 * 24 * 7
         )}`;
       })

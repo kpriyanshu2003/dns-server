@@ -1,10 +1,10 @@
 import React from "react";
-import Main from "@/pages/Main";
-import Domains from "@/pages/Domains";
-import DNS from "@/pages/DNS";
+import Main from "@/page/Main";
+import Domains from "@/page/Domains";
+import DNS from "@/page/DNS";
 import NavBar from "@/components/NavBar";
-import Settings from "@/pages/Settings";
-import Resolve from "@/pages/Resolve";
+import Settings from "@/page/Settings";
+import Resolve from "@/page/Resolve";
 
 function Page({ params }: { params: { id: string } }) {
   const pageComponents: { [key: string]: JSX.Element | string } = {
