@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { LuUser } from "react-icons/lu";
 import { Input } from "@nextui-org/input";
@@ -8,18 +9,20 @@ import { CgSpinner } from "react-icons/cg";
 import { toast } from "sonner";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signup } from "@/actions/auth";
 
 function Page() {
   const router = useRouter();
+  const redirectParams = useSearchParams().get("redirect");
+
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
-  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState({
     password: false,
     confirmPassword: false,
@@ -35,10 +38,9 @@ function Page() {
           Date.now() + 1000 * 60 * 60 * 24 * 7
         )}`;
       })
-      .then(() => {
-        toast.info("Redirecting to Dashboard");
-        setTimeout(() => router.push("/dashboard"), 2000);
-      })
+      .then(() =>
+        setTimeout(() => router.push(redirectParams || "/dashboard"), 1500)
+      )
       .catch((err) => {
         console.log(err);
         toast.error(err.response.data.message);

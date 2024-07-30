@@ -1,6 +1,4 @@
-// import OTPModel from "../model/OTP";
 import UserModel from "../model/User";
-// import { generateOTP, sendOTP } from "../lib/otp";
 import { generateToken } from "../lib/jwt";
 import { Request, Response } from "express";
 import { comparePassword, hashPassword } from "../lib/bcrypt";

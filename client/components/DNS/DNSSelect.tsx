@@ -52,7 +52,7 @@ export function useDomainList({ fetchDelay = 0 } = {}) {
       if (fetchDelay > 0)
         await new Promise((resolve) => setTimeout(resolve, fetchDelay));
 
-      const res = await fetch("http://localhost:3300/api/dns/d", {
+      const res = await fetch("http://localhost:3300/dns/d", {
         signal,
         headers: { Authorization: `Bearer ${Cookie.get("token")}` },
       });

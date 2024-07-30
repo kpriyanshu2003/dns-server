@@ -7,14 +7,15 @@ import { DNSTabsData } from "@/constants/DNS";
 export default function DNSTabs() {
   const searchParams = useSearchParams();
   const search = searchParams?.get("domain");
+  
   if (!search)
     return (
       <div className="text-center text-sm">
         Select a domain before proceeding further
       </div>
     );
-  return (
-    <div>
+  else
+    return (
       <Tabs variant="underlined" aria-label="DNS Tabs">
         {DNSTabsData.map((i) => (
           <Tab key={i.key} title={i.title} className="text-base">
@@ -22,6 +23,5 @@ export default function DNSTabs() {
           </Tab>
         ))}
       </Tabs>
-    </div>
-  );
+    );
 }
