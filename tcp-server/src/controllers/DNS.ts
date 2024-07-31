@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import DomainModel from "../model/Domain";
 import DNSRecordModel from "../model/DNSRecord";
 import mongoose from "mongoose";
+import { CustomRequest } from "../@types/Express";
 
 export const registerDNSRecords = async (req: Request, res: Response) => {
   try {
@@ -31,9 +32,9 @@ export const registerDNSRecords = async (req: Request, res: Response) => {
   }
 };
 
-export const getDNSRecords = async (req: Request, res: Response) => {
+export const getDNSRecords = async (req: CustomRequest, res: Response) => {
   try {
-    const records = await DNSRecordModel.find();
+    const records = await DNSRecordModel.find({});
     if (!records)
       return res
         .status(404)

@@ -8,7 +8,7 @@ import api from ".";
 export const getDomains = async () => {
   try {
     const token = cookies().get("token")?.value;
-    const response = await fetch(api + "/dns/d", {
+    const response = await fetch(api + "/domain", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
       next: { tags: ["domainList"] },
@@ -27,7 +27,7 @@ export const getDomains = async () => {
 export const getDomainById = async (id: string) => {
   try {
     const token = cookies().get("token")?.value;
-    const response = await fetch(api + `/dns/d/${id}`, {
+    const response = await fetch(api + `/domain/${id}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -47,7 +47,7 @@ export const createDomain = async (name: string) => {
     if (!name) throw new Error("Name is required");
 
     const token = cookies().get("token")?.value;
-    const response = await fetch(api + "/dns/d", {
+    const response = await fetch(api + "/domain", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +70,7 @@ export const createDomain = async (name: string) => {
 export const deleteDomainById = async (id: string) => {
   try {
     const token = cookies().get("token")?.value;
-    const response = await fetch(api + `/dns/d/${id}`, {
+    const response = await fetch(api + `/domain/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

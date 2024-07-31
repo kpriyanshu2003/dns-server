@@ -2,6 +2,7 @@ import dgram from "dgram";
 import dnsPacket, { Packet, Question, Answer } from "dns-packet";
 import { db } from "../../tempDB";
 import { config } from "dotenv";
+import { resolveDNS } from "../controllers/Resolve";
 
 config();
 const udpPort = parseInt(process.env.UDP_PORT || "") || 8053;
@@ -12,14 +13,19 @@ server.on("error", (err: Error) => {
   server.close();
 });
 
-server.on("message", (msg: Buffer, rinfo: dgram.RemoteInfo) => {
+server.on("message", async (msg: Buffer, rinfo: dgram.RemoteInfo) => {
   const packet = dnsPacket.decode(msg) as Packet;
 
   if (!packet.questions || packet.questions.length === 0)
     return console.error("No questions found in the DNS packet.");
 
   const question: Question = packet.questions[0];
+
   const ipFromDB = db[question.name];
+  const resolveDN = await resolveDNS(question.name);
+
+  console.log(resolveDN);
+  console.log(ipFromDB);
 
   if (!ipFromDB) {
     // Handle IP not found error

@@ -19,7 +19,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", router);
+app.use("/api", router);
 
 app.use((req: Request, res: Response) =>
   res.json({ message: "DNS Server APi" })

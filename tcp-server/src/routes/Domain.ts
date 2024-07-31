@@ -13,3 +13,5 @@ router.get("/", getDomains);
 router.get("/:id", getDomainbyId);
 router.put("/:id", updateDomain);
 router.delete("/:id", deleteDomain);
+
+export default router;

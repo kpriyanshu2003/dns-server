@@ -3,7 +3,7 @@
 import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Button } from "@nextui-org/button";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { DNSRecordTypeData, TTLData } from "@/constants/DNS";
 import { useSearchParams } from "next/navigation";
 import { createDNSRecord } from "@/actions/dns";
@@ -17,6 +17,7 @@ function DNSRecords() {
     name: "",
     data: "",
     ttl: "",
+    priority: "",
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,6 +39,7 @@ function DNSRecords() {
           name: "",
           data: "",
           ttl: "",
+          priority: "",
         });
       })
       .catch((e) => {
@@ -53,6 +55,7 @@ function DNSRecords() {
       name: "",
       data: "",
       ttl: "",
+      priority: "",
     });
   };
 
@@ -123,6 +126,7 @@ function DNSRecords() {
                 <SelectItem key={i}>{i}</SelectItem>
               ))}
             </Select>
+            <Input type="text" label="Priority" labelPlacement="outside" />
           </div>
           <div className="flex justify-end gap-2 items-center">
             <Button

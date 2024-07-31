@@ -6,7 +6,7 @@ import api from ".";
 export const resolveDNS = async (ip: string) => {
   try {
     const token = cookies().get("token")?.value;
-    const response = await fetch(api + `/dns/resolve?domain=${ip}`, {
+    const response = await fetch(api + `/resolve?domain=${ip}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });

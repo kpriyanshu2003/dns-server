@@ -56,7 +56,9 @@ function DNSTable() {
           {(item) => (
             <TableRow key={item._id}>
               {(columnKey) => (
-                <TableCell>{getKeyValue(item, columnKey)}</TableCell>
+                <TableCell>
+                  {getKeyValue(item, columnKey ? columnKey : "")}
+                </TableCell>
               )}
             </TableRow>
           )}

@@ -15,7 +15,7 @@ export const resolveDNS = async (req: Request, res: Response) => {
     });
     if (!record)
       return res
-        .status(404)
+        .status(500)
         .send({ success: false, message: "Domain not found" });
 
     res.send({

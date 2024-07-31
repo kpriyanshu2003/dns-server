@@ -7,7 +7,7 @@ import api from ".";
 export const getDNSRecordsByName = async (domainId: string) => {
   try {
     const token = cookies().get("token")?.value;
-    const response = await fetch(api + `/dns/dns/n/${domainId}`, {
+    const response = await fetch(api + `/dns/n/${domainId}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
       next: { tags: ["dnsRecords"] },
@@ -28,7 +28,7 @@ export const createDNSRecord = async (domainId: string, data: any) => {
     if (!domainId) throw new Error("Domain ID is required");
 
     const token = cookies().get("token")?.value;
-    const response = await fetch(api + `/dns/dns`, {
+    const response = await fetch(api + `/dns`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
